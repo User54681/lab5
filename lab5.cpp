@@ -13,11 +13,11 @@ int main()
 
     if (file.is_open()) {
         std::getline(file, line);
-        for (unsigned i {}; i <= line.length() - word.length();) {
+        for (unsigned i {}; i <= line.length() - word.length(); ++i) {
             size_t position = line.find(word, i);
             if (position == std::string::npos) break;
             ++cnt;
-            //i = position + i;
+            i = position + word.length() - 1;
         }
     }
 
