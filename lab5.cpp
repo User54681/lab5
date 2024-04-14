@@ -10,7 +10,7 @@ int main()
     unsigned cnt {};
     std::cout << "Введите слово, кол-во которого вы хотите посчитать: " << "\n";
     std::cin >> word;
-    std::ifstream file("file.txt");
+    std::ifstream file("file1.txt");
 
     if (file.is_open()) {
         std::getline(file, line);
@@ -28,9 +28,11 @@ int main()
     matrix<float> mat(3, 3);
     mat.random();
 
-    std::ofstream f("file.txt", std::ios_base::app);
+    std::ofstream f("file2.txt");
 
     if (f.is_open()) {
         f << mat;
     }
+
+    f.close();
 }

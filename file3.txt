@@ -1,0 +1,31 @@
+ID	Author	Title	Pages
+0001	A.S.Pushkin	Dubrovsky	142
+0002	Y.Gibson	Neuromancer	347
+0003	J.K. Rowling	Harry Potter and the Philosopher's Stone	223
+0004	F. Scott Fitzgerald	The Great Gatsby	180
+0005	J.R.R. Tolkien	The Hobbit	310
+0006	George Orwell	1984	328
+0007	Harper Lee	To Kill a Mockingbird	281
+0008	Mark Twain	The Adventures of Huckleberry Finn	366
+0009	Leo Tolstoy	War and Peace	1225
+0010	J.D. Salinger	The Catcher in the Rye	277
+0011	Jane Austen	Pride and Prejudice	279
+0012	Gabriel Garcia Marquez	One Hundred Years of Solitude	417
+0013	Ernest Hemingway	The Old Man and the Sea	127
+0014	Victor Hugo	Les Misérables	1463
+0015	Emily Bronte	Wuthering Heights	342
+0016	Fyodor Dostoevsky	Crime and Punishment	671
+0017	Mary Shelley	Frankenstein	280
+0018	Charles Dickens	Great Expectations	505
+0019	Lewis Carroll	Alice's Adventures in Wonderland	200
+0020	Aldous Huxley	Brave New World	311
+0021	H.G. Wells	The War of the Worlds	192
+0022	Agatha Christie	Murder on the Orient Express	265
+0023	George Orwell	Animal Farm	112
+0024	Margaret Atwood	The Handmaid's Tale	311
+0025	Jules Verne	Twenty Thousand Leagues Under the Sea	303
+0026	Franz Kafka	The Metamorphosis	68
+0027	Harper Lee	Go Set a Watchman	278
+0028	J.R.R. Tolkien	The Lord of the Rings: The Fellowship of the Ring	423
+0029	Suzanne Collins	The Hunger Games	374
+0030	Antoine de Saint-Exupéry	The Little Prince	93
