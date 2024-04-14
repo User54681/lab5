@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "Source.h"
 #include <fstream>
 #include <string>
 
@@ -23,4 +24,13 @@ int main()
 
     std::cout << cnt << "\n";
     file.close();
+
+    matrix<float> mat(3, 3);
+    mat.random();
+
+    std::ofstream f("file.txt", std::ios_base::app);
+
+    if (f.is_open()) {
+        f << mat;
+    }
 }
