@@ -4,8 +4,12 @@
 #include <fstream>
 #include <string>
 
-void Edit_Func(unsigned choice);
-void Read_Func(unsigned choice);
+void add_func();
+void view_func();
+void delete_func();
+void search_func(std::string key);
+void edit_func();
+void menu();
 
 int main()
 {
@@ -41,7 +45,12 @@ int main()
 
     f.close();
 
-    unsigned choice;
+    menu();
+}
+
+
+void menu() {
+    unsigned choice = 0;
     while (choice != 6) {
         std::cout << "Выберите для дальнейшего действия: " << "\n";
         std::cout << "1 - Добавить новую запись в файл" << "\n";
@@ -51,47 +60,130 @@ int main()
         std::cout << "5 - Редактирование записи в файле" << "\n";
         std::cout << "6 - Выход из меню" << "\n";
         std::cin >> choice;
-        
-        if (choice == 1 || choice == 3 || choice == 5) {
-            Edit_Func(choice);
-        }
-    }
-}
 
-void Edit_Func(unsigned choice) {
-    std::ofstream ff("file3.txt", std::ios_base::app);
-    std::string line, id_in, id;
-
-    if (ff.is_open()){
+        std::string key;
         switch (choice)
         {
         case 1:
-            std::cout << "Введите строку для записи в файл" << "\n";
-            std::cin >> line;
-            std::replace(line.begin(), line.end(), ' ', '\t');
-            ff << line << "\n";
+            add_func();
+            break;
+        case 2:
+            view_func();
             break;
         case 3:
-            std::cout << "" << "\n";
-            std::cin >> id;
-            
-        default:
+            delete_func();
+            break;
+        case 4:            
+            std::cout << "Введите номер искомой записи: " << "\n";
+            std::cin >> key;
+            search_func(key);
+            break;
+        case 5:
+            edit_func();
+            break;
+        case 6:
             break;
         }
     }
-    ff.close();
 }
 
-void Read_Func(unsigned choice) {
-    std::ifstream fff("file3.txt");
+void add_func() {
+    std::ofstream file("file3.txt", std::ios_base::app);
+    std::string new_entry;
+    std::cout << "Введите новую запись: ";
+    std::cin >> new_entry;
+    file << new_entry << "\n";
+    std::cout << "Новая запись добавлена в файл." << "\n";
+    file.close();
+}
 
-    switch (choice)
-    {
-    case 2:
+void view_func() {
+    std::ifstream file("file3.txt");
+    std::string line;
 
-    case 4:
-
-    default:
-        break;
+    if (file.is_open()) {
+        while (std::getline(file, line)) {
+            std::cout << line << "\n";
+        }
     }
+
+    file.close();
+}
+
+void delete_func() {
+    std::ifstream inFile("file3.txt");
+    std::ofstream outFile("temp.txt");
+    std::string line, key;
+    std::cout << "Введите номер записи для удаления: " << "\n";
+    std::cin >> key;
+
+    if (inFile.is_open()) {
+        while (std::getline(inFile, line)) {
+            if (line.find(key) == std::string::npos) {
+                outFile << line << std::endl;
+            }
+        }
+    }
+
+    inFile.close();
+    outFile.close();
+
+    std::remove("file3.txt");
+    std::rename("temp.txt", "file3.txt");
+
+    std::cout << "" << "\n";
+}
+
+void search_func(std::string key) {
+    std::ifstream file("file3.txt");
+    std::string line;
+
+    if (file.is_open()) {
+        while (std::getline(file, line)) { 
+            size_t pos = line.find(key); 
+            if (pos != std::string::npos) {
+                std::cout << line << "\n";
+            }
+        }
+    }
+
+    file.close();
+}
+
+void edit_func() {
+    std::string key;
+    std::cout << "Введите номер записи для изменения: ";
+    std::cin >> key;
+
+    std::ifstream inFile("file3.txt");
+    std::ofstream outFile("temp.txt");
+
+    if (!inFile || !outFile) {
+        std::cerr << "Ошибка открытия файлов." << std::endl;
+        return;
+    }
+
+    std::string line;
+    int currentPos = 0;
+    while (std::getline(inFile, line)) {
+        size_t pos = line.find(key);
+        if (currentPos == pos) {
+            std::string new_entry;
+            std::cout << "Введите новое значение для записи: ";
+            std::cin >> new_entry;
+            outFile << new_entry << std::endl;
+        }
+        else {
+            outFile << line << std::endl;
+        }
+        currentPos++;
+    }
+
+    inFile.close();
+    outFile.close();
+
+    std::remove("file3.txt");
+    std::rename("temp.txt", "file3.txt");
+
+    std::cout << "Запись успешно отредактирована." << "\n";
 }
