@@ -155,6 +155,8 @@ void edit_func() {
     std::cout << "Введите номер записи для изменения: ";
     std::cin >> key;
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     std::ifstream inFile("file3.txt");
     std::ofstream outFile("temp.txt");
 
@@ -166,11 +168,10 @@ void edit_func() {
     std::string line;
     int currentPos = 0;
     while (std::getline(inFile, line)) {
-        size_t pos = line.find(key);
-        if (currentPos == pos) {
+        if (currentPos == std::stoi(key)) {
             std::string new_entry;
             std::cout << "Введите новое значение для записи: ";
-            std::cin >> new_entry;
+            std::getline(std::cin, new_entry);
             outFile << new_entry << std::endl;
         }
         else {
